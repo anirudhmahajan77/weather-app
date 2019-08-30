@@ -1,0 +1,36 @@
+.holder{
+    display: block;
+    width: 36%;
+    margin: auto;
+    margin-top: 35px;
+}
+
+.search-bar{
+    width: 83%;
+    outline: none;
+    border: none;
+    color: rgb(117, 113, 113);
+    padding: 12px;
+    font-size: 123%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0px 3px 5px rgba(156, 156, 156, 0.3), -3px -3px 5px rgba(156, 156, 156, 0.3);
+}
+
+.search-bar:focus{
+    outline: none;
+}
+
+.search-btn{
+    border: none;
+    background-image: linear-gradient(to bottom right, slateblue, dodgerblue);
+    padding: 12px;
+    display: inline-block;
+    width: 10%;
+    box-shadow: 3px 3px 5px rgba(156, 156, 156, 0.3);
+    color: white;
+    width: 17%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 130%;
+}

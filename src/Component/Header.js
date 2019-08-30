@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css"
 
+// Basic React function that creates a header
 function Header(){
     return (
         <div>
@@ -9,4 +10,5 @@ function Header(){
     )
 }
 
+// Exporting the Header function
 export default Header

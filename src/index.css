@@ -6,3 +6,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0px;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+}
