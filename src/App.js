@@ -44,7 +44,7 @@ class App extends React.Component {
         max: data.main.temp_max,
         sunset: data.sys.sunset,
         sunrise: data.sys.sunrise,
-        date: data.sys.timezone,
+        date: data.timezone,
         wind: data.wind.speed,
         weather: data.weather[0].description,
         error: ""
