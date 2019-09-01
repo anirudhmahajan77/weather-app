@@ -1,40 +1,44 @@
 import React from "react";
 import "./Comment.css";
 
-class Comment extends React.Component{
-    constructor(){
-        super();
-        this.state={
-            count : 0,
-            value : []
-        }
-        this.count = 1;
-    }
+var count = 0;
+var commentData = [];
+var commentComponent = [];
 
-    countHandler = () => {
-        this.count++;
-      }
+function commentHandler() {
+  countHandler();
+  commentComponent = commentData.map(comment => (
+    <div key={count}>{comment}</div>
+  ));
+}
 
-      commentHandler(e){
-          e.preventDefault();
-          let cmnt = e.target.comment.value;
-          console.log(cmnt);
-      }
-    render(){
-        return(
-        <div className="comment-section">
-            <form onSubmit={this.countHandler}>
-            <textarea placeholder="Enter Your Comment Here..." required onChange={this.handleChange} />
-            <button type="submit" name="comment">Comment</button>
-            </form>
-            <div className="comment-form">
-            <div>Comments ({this.count})</div>
-            <div className="comment-holder">
-            </div>
-            </div>
+function countHandler() {
+  count++;
+}
+
+function Comment() {
+  return (
+    <div>
+      <div className="comment-div">
+        <div>
+          <form onSubmit={commentHandler}>
+            <textarea
+              placeholder="Enter Your Comment Here..."
+              name="text"
+              className="comment-form"
+            />
+            <button type="submit" className="comment-btn">
+              Comment
+            </button>
+          </form>
         </div>
-        )
-    }
+      </div>
+      <div className="comment-div">
+        <div>Comments ({count})</div>
+        <div className="comment-holder">{commentComponent}</div>
+      </div>
+    </div>
+  );
 }
 
 export default Comment;

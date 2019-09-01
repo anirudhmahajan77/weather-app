@@ -1,0 +1,38 @@
+.comment-div{
+    width: 58%;
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 50px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -3px -3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form{
+    width: 99%;
+    font-size: 150%;
+    display: block;
+    padding: 4px;
+    background-color: rgb(228, 220, 220);
+    height: 120px;
+    margin-bottom: 8px; 
+    resize: none;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+
+.comment-form:focus{
+    outline: none;
+    border: none;
+}
+
+.comment-btn{
+    padding: 8px;
+    font-size: 130%;
+    color: white;
+    border: none;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1), -1px -1px 3px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(to bottom right, slateblue, dodgerblue);
+    border-radius: 3px;
+}

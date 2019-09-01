@@ -5,7 +5,7 @@ class WeatherApp extends React.Component{
     render(){ 
       return(
         <div>
-    <div class="Weathercontainer">
+    <div className="Weathercontainer">
       <div id="one">{this.props.city}, {this.props.country}, {this.props.date}</div>
       <div id="two">{this.props.temp}°C</div>
       <div id="three">Weather: <span className="data">{this.props.weather}</span></div>
