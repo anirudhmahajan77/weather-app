@@ -10,22 +10,25 @@ const KEY = "42a1422705af002140589710b2ecc1f5";
 class App extends React.Component {
   state = {
     temperature: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        pressure: undefined,
-        weather: undefined,
-        min: undefined,
-        max: undefined,
-        sunrise: undefined,
-        status: 0,
-        date: undefined,
-        sunset: undefined,
-        wind: undefined,
-        error: "City Name Not Found"
+    city: undefined,
+    country: undefined,
+    humidity: undefined,
+    pressure: undefined,
+    weather: undefined,
+    min: undefined,
+    click: undefined,
+    max: undefined,
+    sunrise: undefined,
+    status: false,
+    click: false,
+    date: undefined,
+    sunset: undefined,
+    wind: undefined,
+    error: false
   };
   getWeather = async e => {
     e.preventDefault();
+    this.setState({ click: true });
     const city = e.target.elements.city.value;
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`
@@ -36,7 +39,8 @@ class App extends React.Component {
       this.setState({
         temperature: data.main.temp,
         city: data.name,
-        satus: 1,
+        status: true,
+        click: false,
         country: data.sys.country,
         humidity: data.main.humidity,
         pressure: data.main.pressure,
@@ -47,24 +51,13 @@ class App extends React.Component {
         date: data.timezone,
         wind: data.wind.speed,
         weather: data.weather[0].description,
-        error: ""
+        error: false
       });
     } else {
       this.setState({
-        temperature: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        pressure: undefined,
-        weather: undefined,
-        min: undefined,
-        max: undefined,
-        sunrise: undefined,
-        status: 0,
-        date: undefined,
-        sunset: undefined,
-        wind: undefined,
-        error: "City Name Not Found"
+        click: false,
+        status: false,
+        error: true,
       });
     }
   };
@@ -89,6 +82,8 @@ class App extends React.Component {
                     pressure={this.state.pressure}
                     date={this.state.date}
                     min={this.state.min}
+                    status={this.state.status}
+                    click={this.props.click}
                     wind={this.state.wind}
                     max={this.state.max}
                     sunrise={this.state.sunrise}
