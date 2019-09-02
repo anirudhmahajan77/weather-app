@@ -35,7 +35,26 @@ class App extends React.Component {
     );
     const data = await api_call.json();
     console.log(data);
-    if (data.code !== 404) {
+
+    if (data.cod !== 404) {
+      let sunrise = data.sys.sunrise;
+      let sunriseObj = new Date(sunrise);
+      let sunriseUTC = sunriseObj.toUTCString();
+      let sunriseTime = sunriseUTC.slice(-11, -4);
+
+      let sunset = data.sys.sunset;
+      let sunsetObj = new Date(sunset);
+      let sunsetUTC = sunsetObj.toUTCString();
+      let sunsetTime = sunsetUTC.slice(-11, -4);
+
+      let currentDate = new Date();
+      currentDate = currentDate.toDateString();
+
+      const originalWeather = data.weather[0].description;
+      const capitalizedWeather = originalWeather.replace(/^\w/, c =>
+        c.toUpperCase()
+      );
+
       this.setState({
         temperature: data.main.temp,
         city: data.name,
@@ -46,18 +65,18 @@ class App extends React.Component {
         pressure: data.main.pressure,
         min: data.main.temp_min,
         max: data.main.temp_max,
-        sunset: data.sys.sunset,
-        sunrise: data.sys.sunrise,
-        date: data.timezone,
+        sunset: sunsetTime,
+        sunrise: sunriseTime,
+        date: currentDate,
         wind: data.wind.speed,
-        weather: data.weather[0].description,
+        weather: capitalizedWeather,
         error: false
       });
     } else {
       this.setState({
         click: false,
         status: false,
-        error: true,
+        error: true
       });
     }
   };

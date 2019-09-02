@@ -19,11 +19,13 @@ class Comment extends React.Component {
       alert("Empty Comment Cannot Be Posted!");
       return 0;
     }
+
     this.setState(prevState => {
       return {
         count: prevState.count + 1
       };
     });
+
     e.target.review.value = "";
     this.setState({ comments: [...this.state.comments, newComment] });
   }
@@ -50,14 +52,13 @@ class Comment extends React.Component {
             Comments ({this.state.count})
           </div>
           <div className="comment-holder">
-            {this.state.comments.map((value, index) => (
+            {this.state.comments.map((value, index) => (              
               <p className="comment-val" key={index}>
-                <img
-                  src="..\..\public\visitor.png"
-                  alt="visitor"
-                  width="40px"
-                  height="40px"
-                />{" "}
+              <img
+              src="https://img.icons8.com/pastel-glyph/64/000000/person-male.png"
+              width="20px"
+              height="20px"
+            />{" "}
                 {value}
               </p>
             ))}

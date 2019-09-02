@@ -4,6 +4,7 @@ import WeatherApp from "./WeatherApp"
 import Loader from "./Loader.js"
 import Error from "./Error.js"
 
+
 const Weather = props => (
     <div className="weather">
       { props.status && <WeatherApp
@@ -22,12 +23,12 @@ const Weather = props => (
         /> 
       }
       {
-          props.click &&
-          <Loader />
+          props.click && <Loader />
       }
       {
           props.error && <Error />
       }
+      
   </div>
 );
 

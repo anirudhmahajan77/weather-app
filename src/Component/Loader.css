@@ -3,6 +3,7 @@
     padding: 15px;
     color: rgb(117, 113, 113);
     margin: auto;
+    border-radius: 8px;
     display: block;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1), -3px -3px 5px rgba(0, 0, 0, 0.1);
 }
