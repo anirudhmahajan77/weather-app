@@ -9,7 +9,7 @@ class Loader extends React.Component {
 
   // Rendering the Loader Component
   render() {
-    return <div id="ConditionHolder">Searching City Name...</div>;
+    return <div className="ConditionHolder">Searching City Name...</div>;
   }
 }
 

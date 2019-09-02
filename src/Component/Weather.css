@@ -3,7 +3,7 @@
   margin: auto;
   margin-bottom: 50px;
   width: 60%;
-  border-radius: 3px;
+  border-radius: 6px;
   height: 600px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(13, 1fr);
