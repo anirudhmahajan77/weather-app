@@ -36,3 +36,12 @@
     background-image: linear-gradient(to bottom right, slateblue, dodgerblue);
     border-radius: 3px;
 }
+
+.comment-val{
+    border: none;
+    background-color: rgb(228, 220, 220);
+    padding: 9px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    width: auto; 
+}

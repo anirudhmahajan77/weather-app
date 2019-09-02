@@ -1,44 +1,70 @@
 import React from "react";
 import "./Comment.css";
 
-var count = 0;
-var commentData = [];
-var commentComponent = [];
+class Comment extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+      comments: []
+    };
+    this.newCommentHandler = this.newCommentHandler.bind(this);
+  }
 
-function commentHandler() {
-  countHandler();
-  commentComponent = commentData.map(comment => (
-    <div key={count}>{comment}</div>
-  ));
-}
+  newCommentHandler(e) {
+    e.preventDefault();
 
-function countHandler() {
-  count++;
-}
+    var newComment = e.target.review.value;
+    if (newComment === "" || newComment === " ") {
+      alert("Empty Comment Cannot Be Posted!");
+      return 0;
+    }
+    this.setState(prevState => {
+      return {
+        count: prevState.count + 1
+      };
+    });
+    e.target.review.value = "";
+    this.setState({ comments: [...this.state.comments, newComment] });
+  }
 
-function Comment() {
-  return (
-    <div>
-      <div className="comment-div">
-        <div>
-          <form onSubmit={commentHandler}>
-            <textarea
-              placeholder="Enter Your Comment Here..."
-              name="text"
-              className="comment-form"
-            />
-            <button type="submit" className="comment-btn">
-              Comment
-            </button>
-          </form>
+  render() {
+    return (
+      <div>
+        <div className="comment-div">
+          <div>
+            <form onSubmit={this.newCommentHandler}>
+              <textarea
+                placeholder="Enter Your Comment Here..."
+                name="review"
+                className="comment-form"
+              />
+              <button type="submit" className="comment-btn">
+                Comment
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="comment-div">
+          <div style={{ marginBottom: "3px" }}>
+            Comments ({this.state.count})
+          </div>
+          <div className="comment-holder">
+            {this.state.comments.map((value, index) => (
+              <p className="comment-val" key={index}>
+                <img
+                  src="..\..\public\visitor.png"
+                  alt="visitor"
+                  width="40px"
+                  height="40px"
+                />{" "}
+                {value}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="comment-div">
-        <div>Comments ({count})</div>
-        <div className="comment-holder">{commentComponent}</div>
-      </div>
-    </div>
-  );
+    );
+  }
 }
-
 export default Comment;
