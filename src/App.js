@@ -20,15 +20,15 @@ class App extends React.Component {
     max: undefined,
     sunrise: undefined,
     status: false,
-    click: false,
+    loader: false,
     date: undefined,
     sunset: undefined,
     wind: undefined,
-    error: 200
+    error: false,
   };
   getWeather = async e => {
     e.preventDefault();
-    this.setState({ click: true });
+    this.setState({ loader: true });
     const city = e.target.elements.city.value;
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`
@@ -36,7 +36,7 @@ class App extends React.Component {
     const data = await api_call.json();
     console.log(data);
 
-    if (data) {
+    if (data.message !== "city not found") {
       let sunrise = data.sys.sunrise;
       let sunriseObj = new Date(sunrise);
       let sunriseUTC = sunriseObj.toUTCString();
@@ -63,7 +63,7 @@ class App extends React.Component {
         temperature: temp,
         city: data.name,
         status: true,
-        click: false,
+        loader: false,
         country: data.sys.country,
         humidity: data.main.humidity,
         pressure: data.main.pressure,
@@ -74,13 +74,13 @@ class App extends React.Component {
         date: currentDate,
         wind: data.wind.speed,
         weather: capitalizedWeather,
-        error: data.cod
+        error: false
       });
     } else {
       this.setState({
-        click: false,
+        loader: false,
         status: false,
-        error: data.cod,
+        error: true,
       });
     }
   };
@@ -106,7 +106,7 @@ class App extends React.Component {
                     date={this.state.date}
                     min={this.state.min}
                     status={this.state.status}
-                    click={this.props.click}
+                    loader={this.state.loader}
                     wind={this.state.wind}
                     max={this.state.max}
                     sunrise={this.state.sunrise}

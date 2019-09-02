@@ -23,10 +23,10 @@ const Weather = props => (
         /> 
       }
       {
-          props.click && <Loader />
+          props.loader && <Loader />
       }
       {
-         (props.error === 404) && <Error />
+         props.error && <Error />
       }
       
   </div>
