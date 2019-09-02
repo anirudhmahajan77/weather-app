@@ -1,7 +1,8 @@
+// Importing the dependencies of the Component
 import React from "react";
 import "./Header.css"
 
-// Basic React function that creates a header
+// This function return the Header Component JSX
 function Header(){
     return (
         <div>
@@ -10,5 +11,5 @@ function Header(){
     )
 }
 
-// Exporting the Header function
+// Exporting the Header Component to the App Component
 export default Header

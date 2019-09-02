@@ -1,13 +1,16 @@
+// Imported the dependencies for App component
 import React from "react";
-
-import Header from "./Component/Header.js";
-import Form from "./Component/Form.js";
-import Weather from "./Component/Weather.js";
+import Header from "./Component/Header.js"; // Importing the Header component
+import Form from "./Component/Form.js"; // Imported the main Form component
+import Weather from "./Component/Weather.js"; // Imported the Weather content component
 import "./App.css";
 
+// API KEY of the host account for data fetching
 const KEY = "42a1422705af002140589710b2ecc1f5";
 
+// The main App Component Class
 class App extends React.Component {
+  // Setting Up State
   state = {
     temperature: undefined,
     city: undefined,
@@ -24,19 +27,26 @@ class App extends React.Component {
     date: undefined,
     sunset: undefined,
     wind: undefined,
-    error: false,
+    error: false
   };
+
+  // Async function for data retrieval
   getWeather = async e => {
     e.preventDefault();
     this.setState({ loader: true });
     const city = e.target.elements.city.value;
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`
-    );
-    const data = await api_call.json();
-    console.log(data);
+    ); // Making the call
 
+    const data = await api_call.json(); // Casting raw data into JSON Format
+
+    // Implementing the coditional rendering for components
     if (data.message !== "city not found") {
+      /*
+       Logic for data conversion of the timestamp to
+       a readable Date and Time format
+      */
       let sunrise = data.sys.sunrise;
       let sunriseObj = new Date(sunrise);
       let sunriseUTC = sunriseObj.toUTCString();
@@ -54,11 +64,16 @@ class App extends React.Component {
       const capitalizedWeather = originalWeather.replace(/^\w/, c =>
         c.toUpperCase()
       );
-      
+
+      // Conversion of Temperature of Kevin Format to celcius
       let temp = parseInt(data.main.temp - 273.15);
       let minimum = parseInt(data.main.temp_min - 273.15);
       let maximum = parseInt(data.main.temp_max - 273.15);
 
+      /* 
+       When Everything Goes right 
+       The state will be update with the new values
+      */
       this.setState({
         temperature: temp,
         city: data.name,
@@ -77,13 +92,16 @@ class App extends React.Component {
         error: false
       });
     } else {
+      // Setting up State values for Error situation
       this.setState({
         loader: false,
         status: false,
-        error: true,
+        error: true
       });
     }
   };
+
+  // Render function for rendering the whole App Component
   render() {
     return (
       <div>
@@ -92,10 +110,15 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col-xs-5 title-container">
+                  {/* Placing the Header Component */}
                   <Header />
                 </div>
                 <div className="col-xs-7 form-container">
+
+                  {/* Placing the Form Component */}
                   <Form getWeather={this.getWeather} />
+
+                  {/* Placing the Weather Component */}
                   <Weather
                     city={this.state.city}
                     country={this.state.country}
@@ -123,4 +146,5 @@ class App extends React.Component {
   }
 }
 
+// Exporting the App Component to Index.js
 export default App;
