@@ -7,7 +7,7 @@ import Error from "./Error.js"
 
 const Weather = props => (
     <div className="weather">
-      { props.status && <WeatherApp
+      { props.status && (props.error !== 404) && <WeatherApp
             city={props.city}
             country={props.country}
             date={props.date}
@@ -26,7 +26,7 @@ const Weather = props => (
           props.click && <Loader />
       }
       {
-          props.error && <Error />
+         (props.error === 404) && <Error />
       }
       
   </div>
