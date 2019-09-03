@@ -33,7 +33,15 @@ class App extends React.Component {
   // Async function for data retrieval
   getWeather = async e => {
     e.preventDefault();
-    this.setState({ loader: true });
+    /*
+     Setting up the Loader and Error
+     component Visibility Configurations
+    */
+    this.setState({ 
+      loader: true,
+      error: false
+    });
+
     const city = e.target.elements.city.value;
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`
@@ -114,7 +122,6 @@ class App extends React.Component {
                   <Header />
                 </div>
                 <div className="col-xs-7 form-container">
-
                   {/* Placing the Form Component */}
                   <Form getWeather={this.getWeather} />
 
